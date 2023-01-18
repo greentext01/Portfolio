@@ -1,28 +1,24 @@
-import { ReactNode, useEffect } from "react";
-import { useWindowStore } from "./store";
-import { Vector2 } from "./types";
+import { MouseEventHandler, ReactNode, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Window from "./Window";
 
 type Props = {
   children: ReactNode;
 };
 
 export default function WindowManager() {
-  const windows = useWindowStore()
-
-  useEffect(() => {
-    windows.add({
-      content: <>Hey</>,
-      id: uuidv4(),
-      pos: [0, 0],
-      size: [100, 100],
-      title: "Window"
-    })
-  }, [])
+  const mouseDown: MouseEventHandler = (e) => {};
 
   return (
-    <>
-      {windows.windows}
-    </>
-  )
+    <Window
+      window={{
+        id: uuidv4(),
+        pos: [0, 0],
+        size: [100, 100],
+        title: "Window",
+      }}
+    >
+      Hello!
+    </Window>
+  );
 }
