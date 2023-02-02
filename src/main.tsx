@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./routes";
 import Root from "./routes/root";
-import "./index.css"
+import "./index.css";
 import ErrorPage from "./util/ErrorPage";
 
 const router = createBrowserRouter([
@@ -14,9 +14,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Index />
-      }
-    ]
+        element: <Index />,
+      },
+    ],
   },
 ]);
 

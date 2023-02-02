@@ -8,9 +8,7 @@ export default function ErrorPage() {
   return (
     <div>
       There was an error.
-      <div>
-        please still hire me 🥺
-      </div>
+      <div>please still hire me 🥺</div>
     </div>
-  )
-};
+  );
+}
