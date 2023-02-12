@@ -286,7 +286,6 @@ export function useResize(
       pos,
       size,
       fullscreen,
-      minimized,
     },
     events: {
       onFullscreen,

@@ -1,13 +1,16 @@
 import { ReactNode } from "react";
 import { useResize } from "./hooks/useResize";
+import { useWindows } from "./state/useWindows";
 
-interface Props {
+export interface WindowInfo {
   children: ReactNode;
   title: string;
   icon: string | ReactNode;
-  onClose: () => unknown;
-  onMinimize: () => unknown;
-  onMaximize: () => unknown;
+}
+
+export interface WindowStateItem extends WindowInfo {
+  id: string;
+  zIndex: number;
 }
 
 const RESIZE_CORNER_SIZE = 20;
@@ -17,11 +20,11 @@ export default function Window({
   children,
   icon,
   title,
-  onMaximize,
-  onClose,
-  onMinimize,
-}: Props) {
+  zIndex,
+  id,
+}: WindowStateItem) {
   const resize = useResize(200, 150, 500, 300);
+  const windows = useWindows();
 
   return (
     <div
@@ -33,7 +36,9 @@ export default function Window({
         width: resize.state.fullscreen ? "100%" : resize.state.size[0],
         height: resize.state.fullscreen ? "100%" : resize.state.size[1],
         borderRadius: resize.state.fullscreen ? 0 : "1rem",
+        zIndex,
       }}
+      onClick={() => windows.focus(id)}
     >
       <div
         className={`absolute cursor-nw-resize`}
@@ -135,18 +140,13 @@ export default function Window({
         </div>
 
         <div className="flex ml-auto gap-1.5">
-          <button onClick={onClose}>
+          <button onClick={() => windows.removeWindow(id)}>
             <img src="/Close.svg" alt="Close" />
           </button>
-          <button onClick={onMinimize}>
+          <button onClick={resize.events.onMinimize}>
             <img src="/Minimize.svg" alt="Minimize" />
           </button>
-          <button
-            onClick={() => {
-              setFullscreen(!fullscreen);
-              onMaximize();
-            }}
-          >
+          <button onClick={resize.events.onFullscreen}>
             <img src="/Fullscreen.svg" alt="Fullscreen" />
           </button>
         </div>

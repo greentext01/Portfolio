@@ -6,9 +6,9 @@ export default function ErrorPage() {
   console.error(error);
 
   return (
-    <div>
+    <div className="text-coffee-300 font-bold text-4xl h-screen flex items-center justify-center flex-col gap-2">
       There was an error.
-      <div>please still hire me 🥺</div>
+      <div className="font-normal text-lg">please still hire me 🥺</div>
     </div>
   );
 }

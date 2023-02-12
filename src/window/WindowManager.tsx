@@ -1,9 +1,14 @@
+import { useWindows } from "./state/useWindows";
 import Window from "./Window";
 
 export default function WindowManager() {
+  const windows = useWindows();
+
   return (
-    <Window title="espresso" icon={<img src="/espresso.png" height="15" width="23" />}>
-      Hello!
-    </Window>
+    <>
+      {windows.windows.map((window, i) => (
+        <Window {...window} key={i} zIndex={i}>Hello!</Window>
+      ))}
+    </>
   );
 }
