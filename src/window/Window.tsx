@@ -28,7 +28,7 @@ export default function Window({
 
   return (
     <div
-      className="select-none bg-coffee-800 absolute p-2 shadow-lg border-coffee-600 pt-1 border"
+      className="select-none bg-coffee-800 absolute p-2 shadow-lg border-coffee-600 pt-2 border"
       ref={resize.refs.window}
       style={{
         left: resize.state.fullscreen ? 0 : resize.state.pos[0],
@@ -139,7 +139,7 @@ export default function Window({
           {title}
         </div>
 
-        <div className="flex ml-auto gap-1.5">
+        <div className="flex ml-auto gap-1.5 mr-[1px]">
           <button onClick={() => windows.removeWindow(id)}>
             <img src="/Close.svg" alt="Close" />
           </button>

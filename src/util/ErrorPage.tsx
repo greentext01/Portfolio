@@ -8,7 +8,9 @@ export default function ErrorPage() {
   return (
     <div className="text-coffee-300 font-bold text-4xl h-screen flex items-center justify-center flex-col gap-2">
       There was an error.
-      <div className="font-normal text-lg">please still hire me 🥺</div>
+      <div className="font-normal text-lg text-coffee-200">
+        please still hire me 🥺
+      </div>
     </div>
   );
 }

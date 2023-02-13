@@ -6,6 +6,9 @@ module.exports = {
       'mono': ['JetBrains Mono'] 
     },
     extend: {
+      blur: {
+        "xs": "1px"
+      },
       colors: {
         coffee: {
           100: "#FDD0A7",
