@@ -1,3 +1,4 @@
+import Toolbar from "../components/Toolbar";
 import { useWindows } from "../window/state/useWindows";
 import WindowManager from "../window/WindowManager";
 
@@ -18,6 +19,7 @@ export default function Index() {
         Add window
       </button>
       <WindowManager />
+      <Toolbar />
     </>
   );
 }

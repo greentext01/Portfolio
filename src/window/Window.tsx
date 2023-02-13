@@ -28,7 +28,7 @@ export default function Window({
 
   return (
     <div
-      className="select-none bg-coffee-800 absolute p-2 shadow-md border-coffee-600 pt-1 border"
+      className="select-none bg-coffee-800 absolute p-2 shadow-lg border-coffee-600 pt-1 border"
       ref={resize.refs.window}
       style={{
         left: resize.state.fullscreen ? 0 : resize.state.pos[0],
@@ -38,7 +38,7 @@ export default function Window({
         borderRadius: resize.state.fullscreen ? 0 : "1rem",
         zIndex,
       }}
-      onClick={() => windows.focus(id)}
+      onMouseDown={() => windows.focus(id)}
     >
       <div
         className={`absolute cursor-nw-resize`}

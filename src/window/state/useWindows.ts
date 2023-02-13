@@ -13,7 +13,7 @@ export const useWindows = create<WindowState>()((set) => ({
   windows: [],
   addWindow: (newWindow) =>
     set((state) => {
-      console.log(state.windows)
+      console.log(state.windows);
       const window: WindowStateItem = {
         ...newWindow,
         id: uuidv4(),
@@ -26,12 +26,23 @@ export const useWindows = create<WindowState>()((set) => ({
     set((state) => ({ windows: state.windows.filter((i) => i.id !== id) })),
   focus: (id) =>
     set((state) => {
-      const maxZ = Math.max(...state.windows.map((w) => w.zIndex));
+      const target = state.windows.find((w) => w.id === id);
+      if (!target) return { windows: state.windows };
+
       return {
-        windows: state.windows.map((w) => ({
-          ...w,
-          zIndex: w.id === id ? state.windows.length : w.zIndex - 1,
-        })),
+        windows: state.windows.map((w) => {
+          if (w.id === id) {
+            return {
+              ...w,
+              zIndex: state.windows.length,
+            }
+          } else {
+            return {
+              ...w,
+              zIndex: w.zIndex > target.zIndex ? w.zIndex - 1 : w.zIndex,
+            }
+          }
+        }),
       };
     }),
 }));

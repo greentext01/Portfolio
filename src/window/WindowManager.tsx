@@ -7,7 +7,7 @@ export default function WindowManager() {
   return (
     <>
       {windows.windows.map((window, i) => (
-        <Window {...window} key={i} zIndex={i}>Hello!</Window>
+        <Window {...window} key={i}>Hello!</Window>
       ))}
     </>
   );
