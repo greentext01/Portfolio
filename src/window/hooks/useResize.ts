@@ -98,7 +98,7 @@ export function useResize(
     onMouseMove: (ctx: ResizeContext, ev: MouseEvent) => unknown
   ): MouseEventHandler => {
     const handler: MouseEventHandler = (e) => {
-      if (minimized || fullscreen || ref.current === null) return;
+      if (minimized || ref.current === null) return;
 
       const bottomOnClick = pos[1] + size[1];
       const rightOnClick = pos[0] + size[0];
@@ -194,8 +194,15 @@ export function useResize(
   );
 
   const moveHandler = createResizeHandler(windowRef, (ctx, e) => {
-    const finalX = e.clientX - ctx.offsetOnClickX;
-    const finalY = e.clientY - ctx.offsetOnClickY;
+    let finalX, finalY;
+    if (fullscreen) {
+      mousePosOnClick
+      pos = mousePosOnClick
+      setFullscreen(false);
+    } else {
+      finalX = e.clientX - ctx.offsetOnClickX;
+      finalY = e.clientY - ctx.offsetOnClickY;
+    }
 
     setPos([
       clamp(
@@ -286,6 +293,7 @@ export function useResize(
       pos,
       size,
       fullscreen,
+      minimized,
     },
     events: {
       onFullscreen,
